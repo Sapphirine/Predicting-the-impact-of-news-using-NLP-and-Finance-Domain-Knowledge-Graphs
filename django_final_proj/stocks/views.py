@@ -462,7 +462,7 @@ def checkOrganization(inputString):
     blackList=["ceo",'inc','system','boy','corp','mac']
     if(inputString.lower() in blackList):
         return False
-    link="https://kgsearch.googleapis.com/v1/entities:search?query=%s"%inputString+"&key=AIzaSyCPE9616O98QYGRs00fRZNmq4btnB6wYg8%20&limit=1&indent=True"
+    link="https://kgsearch.googleapis.com/v1/entities:search?query=%s"%inputString+"&key=ABC&limit=1&indent=True"
     response = urllib2.urlopen(link)
     # print(json.loads(response.read()))
     result=json.loads(response.read())['itemListElement']
