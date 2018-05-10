@@ -1,0 +1,58 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Building Finance Domain Knowledge Graph</title>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+body {margin:0;}
+
+.icon-bar {
+    width: 100%;
+    background-color: #ff9400;
+    overflow: auto;
+}
+
+.icon-bar a {
+    float: left;
+    width: 20%;
+    text-align: center;
+    padding: 0 0;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 36px;
+}
+
+.icon-bar a:hover {
+    background-color: #000;
+}
+
+.active {
+    background-color: #4CAF50 !important;
+}
+</style>
+<body>
+<div class="page-header">
+    <h1><a href="/bigdata">Building Finance Domain Knowledge Graph</a></h1><br>
+    <p align="right">Created by: Chee Kit Tang (ct2819)</p>
+    <div class="icon-bar">
+      <a class="active" href="/bigdata"><i class="fa fa-home"> Home</i></a> 
+      <a href="/bigdata/stocks"><i class="fa fa-search"> Stocks</i></a> 
+      <a href="/bigdata/news"><i class="fa fa-globe"> News</i></a>
+    </div>
+</div>
+This is a project created to fulfill the requirements of E6893 Advanced Big Data Analytics.
+<br>
+<br>
+The objective of this project is to create a fundamental analysis tool to analyze the company relationships to determine the true value of the company.
+<br>
+<br>
+In addition, news impact tool is created for the user to identify the impact of any major positive/negative news and allows the investors to make any changes to their investing portfolio before the stock market reacts. 
+<br>
+<br>
+</body>
+</html>

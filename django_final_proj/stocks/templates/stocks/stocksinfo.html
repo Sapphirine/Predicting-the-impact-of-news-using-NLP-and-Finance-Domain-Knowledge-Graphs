@@ -1,0 +1,128 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Building Finance Domain Knowledge Graph</title>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+</head>
+<style>
+body {margin:0;}
+
+.icon-bar {
+    width: 100%;
+    background-color: #ff9400;
+    overflow: auto;
+}
+
+.icon-bar a {
+    float: left;
+    width: 20%;
+    text-align: center;
+    padding: 0 0;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 36px;
+}
+
+.icon-bar a:hover {
+    background-color: #000;
+}
+
+.active {
+    background-color: #4CAF50 !important;
+}
+</style>
+<body onload="changeTab();">
+<div class="page-header">
+    <h1><a href="/bigdata">Building Finance Domain Knowledge Graph</a></h1><br>
+    <p align="right">Created by: Chee Kit Tang (ct2819)</p>
+    <div class="icon-bar">
+      <a href="/bigdata"><i class="fa fa-home"> Home</i></a> 
+      <a class="active" href="/bigdata/stocks"><i class="fa fa-search"> Stocks</i></a> 
+      <a href="/bigdata/news"><i class="fa fa-globe"> News</i></a>
+    </div>
+</div>
+
+<form action="/bigdata/stocks/stocksinfo" method="get">
+  <div class="input">
+    <center>Stock/Company Name<br>
+    <center><input type="text" name="input_string" value={{input_string}}><br>
+    <input type="submit" value="Submit"><br>
+  </div>
+</form>
+<div class="tab">
+
+  <div class="col-12 col-sm-12 col-lg-12">
+  <ul class="nav nav-tabs" id="myTab">
+      <li><a data-toggle="tab" href="#Marketshare">Marketshare</a></li>
+      <li><a data-toggle="tab" href="#Competitor">Competitor</a></li>
+      <li><a data-toggle="tab" href="#StakeHolder">StakeHolder</a></li>
+      <li><a data-toggle="tab" href="#BoardMember">BoardMember</a></li>
+      <li><a data-toggle="tab" href="#Executive">Executive</a></li>
+      <li><a data-toggle="tab" href="#Combined">Combined Graph</a></li>
+      <li><a data-toggle="tab" href="#Summary">Summary</a></li>
+      <li align="right"><a onclick=" window.open('http://ec2-54-191-219-44.us-west-2.compute.amazonaws.com:7474/browser','_blank')" align="right">Open in Neo4j</a></li>
+  </ul>
+  </div>
+  {% if graph %}
+  {% else %}
+  Search Result not found!
+  {% endif %}
+
+  <div id="content" class="tab-content">
+    <div id="Marketshare" class="tab-pane fade in active" style="width: 100%;height: 100%;overflow: auto; ">
+    {% if piechart %}
+    {{ piechart|safe }}
+    {% endif %}
+    </div>
+    <div id="Competitor" class="tab-pane fade in active" style="width: 100%;height: 100%;overflow: auto; ">
+    {% if graph %}
+    {{ graph|safe }}
+    {% endif %}
+    </div>
+    <div id="StakeHolder" class="tab-pane fade in active" style="width: 100%;height: 100%;overflow: auto; ">
+    {% if graph2 %}
+    {{ graph2|safe }}
+    {% endif %}
+    </div>
+    <div id="BoardMember" class="tab-pane fade in active" style="width: 100%;height: 100%;overflow: auto; ">
+    {% if graph3 %}
+    {{ graph3|safe }}
+    {% endif %}
+    </div>
+    <div id="Executive" class="tab-pane fade in active" style="width: 100%;height: 100%;overflow: auto; ">
+    {% if graph4 %}
+    {{ graph4|safe }}
+    {% endif %}
+    </div>
+    <div id="Combined" class="tab-pane fade in active" style="width: 100%;height: 100%;overflow: auto; ">
+    {% if graph5 %}
+    {{ graph5|safe }}
+    {% endif %}
+    </div>
+    <div id="Summary" class="tab-pane fade" style="width: 100%;height: 100%;overflow: auto; ">
+    {% if summarized_text %}
+    <div style="text-align: center;">
+        <h2>Summary</h2>
+        <div style="display: inline-block; text-align: left;">
+          {{summarized_text|linebreaks}}
+        </div>
+    </div>
+    {% endif %}
+    </div>
+  </div><!-- end content -->
+</div>
+</body>
+<script>
+    function changeTab() {
+          $("#tabs").tabs();
+          setTimeout(function() {
+              $("#tabs").tabs("option", "active", 2);
+          }, 3000);
+    };
+</script>
+</html>
